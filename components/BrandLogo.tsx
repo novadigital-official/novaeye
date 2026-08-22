@@ -16,14 +16,14 @@ export default function BrandLogo({ variant = 'light', size = 'md', showText = t
 
   return (
     <div className="flex items-center gap-3 select-none group">
-      {/* Precision Emblem Image: Swiss Ophthalmology Golden Eye & Refractive Aperture */}
-      <div className={`${iconSize} relative rounded-xl overflow-hidden shadow-md border border-[#c5a059]/30 shrink-0 group-hover:border-[#c5a059] transition-all bg-[#FAF8F5]`}>
+      {/* Precision Emblem Image: Modern Teal & Slate Ophthalmic Iris */}
+      <div className={`${iconSize} relative rounded-xl overflow-hidden shadow-sm border border-slate-700/30 shrink-0 group-hover:scale-105 transition-all bg-white p-0.5`}>
         <Image
-          src="/images/antalya-vision-logo.jpg"
-          alt="Antalya Vision Clinic Logo"
+          src="/images/antalya-vision-logo.png"
+          alt="Antalya Vision Clinic"
           fill
           sizes="48px"
-          className="object-cover scale-110"
+          className="object-contain p-0.5"
           priority
         />
       </div>
@@ -31,11 +31,11 @@ export default function BrandLogo({ variant = 'light', size = 'md', showText = t
       {/* Typography */}
       {showText && (
         <div className="flex flex-col leading-tight">
-          <div className={`font-semibold tracking-tight uppercase ${textSize} ${variant === 'light' ? 'text-white' : 'text-[#08111f]'}`}>
-            Antalya <span className="text-[#c5a059] font-bold">Vision</span>
+          <div className={`font-bold tracking-tight uppercase ${textSize} ${variant === 'light' ? 'text-white' : 'text-[#08111f]'}`}>
+            Antalya <span className="text-teal-400">Vision</span>
           </div>
-          <div className={`font-medium tracking-widest uppercase ${subtextSize} ${variant === 'light' ? 'text-[#c5a059]/90' : 'text-slate-500'}`}>
-            Swiss Refractive Institute
+          <div className={`font-semibold tracking-widest uppercase ${subtextSize} ${variant === 'light' ? 'text-slate-400' : 'text-slate-500'}`}>
+            Refractive Clinic
           </div>
         </div>
       )}
