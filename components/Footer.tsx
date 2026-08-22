@@ -2,10 +2,10 @@
 
 import { useSite } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
-import { Eye, ShieldCheck, Mail, MapPin, Phone } from 'lucide-react';
+import { Eye, ShieldCheck, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
-  const { lang, whatsappUrl } = useSite();
+  const { lang } = useSite();
   const f = DICT.footer;
 
   return (
@@ -21,13 +21,16 @@ export default function Footer() {
                 <Eye className="w-4 h-4" />
               </div>
               <span className="text-white font-extrabold text-lg">
-                MedTurkey<span className="text-amber-400">Elite</span>
+                Antalya<span className="text-amber-400">Vision</span>
+              </span>
+              <span className="text-[10px] text-amber-200/80 bg-white/10 px-2 py-0.5 rounded-full font-bold ml-1">
+                NOVA GROUP
               </span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed max-w-md">
               {lang === 'tr'
-                ? 'Türkiye\'nin T.C. Sağlık Bakanlığı ruhsatlı A++ hastanelerinde dünya standardı ZEISS Akıllı Lens ve No-Touch Lazer cerrahisi koordinasyonu.'
-                : 'Premium European-standard ZEISS Trifocal Smart Lens and Laser Eye Surgery coordination in accredited, licensed healthcare facilities.'}
+                ? 'Antalya\'nın T.C. Sağlık Bakanlığı ruhsatlı A++ hastanelerinde dünya standardı ZEISS Akıllı Lens ve No-Touch Lazer cerrahisi koordinasyonu.'
+                : 'Premium European-standard ZEISS Trifocal Smart Lens and Laser Eye Surgery coordination in licensed partner healthcare facilities in Antalya.'}
             </p>
           </div>
 
@@ -47,20 +50,20 @@ export default function Footer() {
           {/* Legal / Contact */}
           <div className="space-y-2.5">
             <h4 className="text-white font-bold text-xs uppercase tracking-wider">
-              {lang === 'tr' ? 'Koordinasyon Merkezi' : 'Patient Coordination'}
+              {lang === 'tr' ? 'Antalya Koordinasyon' : 'Antalya Coordination'}
             </h4>
             <div className="space-y-1.5 text-xs text-slate-400">
               <p className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>Istanbul & Antalya Partner Suites, Turkey</span>
+                <span>Lara & Muratpaşa Partner Hospital Suites, Antalya</span>
               </p>
               <p className="flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>info@medturkeyelite.com</span>
+                <span>info@antalyavisionclinic.com</span>
               </p>
               <p className="flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>Ministry of Health Licensed Partners</span>
+                <span>T.C. Ministry of Health Licensed Partners</span>
               </p>
             </div>
           </div>
@@ -74,7 +77,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-slate-800/80 pt-6 text-center text-slate-500 text-[11px]">
-          <p>© {new Date().getFullYear()} MedTurkey Elite. {f.rights[lang]}</p>
+          <p>© {new Date().getFullYear()} Antalya Vision Clinic — Part of Nova Medical Group. {f.rights[lang]}</p>
         </div>
 
       </div>

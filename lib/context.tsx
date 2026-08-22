@@ -17,7 +17,7 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>('en');
 
   useEffect(() => {
-    const saved = localStorage.getItem('medturkey_lang') as Lang;
+    const saved = localStorage.getItem('antalyavision_lang') as Lang;
     if (saved && ['en', 'fr', 'tr'].includes(saved)) {
       setLangState(saved);
     }
@@ -25,16 +25,16 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = (newLang: Lang) => {
     setLangState(newLang);
-    localStorage.setItem('medturkey_lang', newLang);
+    localStorage.setItem('antalyavision_lang', newLang);
   };
 
   const whatsappNumber = '905070871789';
 
   const whatsappUrl = (customMsg?: string) => {
     const defaultMsg = {
-      en: 'Hello MedTurkey Elite, I would like to get a free consultation and quote for Eye Surgery (Smart Lens / Laser).',
-      fr: 'Bonjour MedTurkey Elite, je souhaite obtenir une consultation gratuite et un devis pour la chirurgie oculaire.',
-      tr: 'Merhaba MedTurkey Elite, Akıllı Lens ve Göz Lazer ameliyatı için ücretsiz danışmanlık ve fiyat bilgisi almak istiyorum.'
+      en: 'Hello Antalya Vision Clinic, I would like to get a free consultation and quote for ZEISS Smart Lens / Laser Surgery in Antalya.',
+      fr: 'Bonjour Antalya Vision Clinic, je souhaite obtenir une consultation gratuite et un devis pour la chirurgie oculaire à Antalya.',
+      tr: 'Merhaba Antalya Vision Clinic, ZEISS Akıllı Lens ve Göz Lazer ameliyatı için ücretsiz danışmanlık ve fiyat bilgisi almak istiyorum.'
     }[lang];
 
     const text = customMsg || defaultMsg;

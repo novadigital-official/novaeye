@@ -40,10 +40,10 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className="text-white font-extrabold text-lg sm:text-xl tracking-tight">
-              MedTurkey<span className="text-amber-400 font-bold">Elite</span>
+              Antalya<span className="text-amber-400 font-bold">Vision</span>
             </span>
             <span className="text-[10px] text-amber-200/80 -mt-1 font-medium tracking-wider">
-              EYE SURGERY & SMART LENS
+              ZEISS SMART LENS · NOVA GROUP
             </span>
           </div>
         </a>
