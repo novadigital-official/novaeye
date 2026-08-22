@@ -1,15 +1,22 @@
-<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="36" height="36" rx="8" fill="#08111f"/>
-  <rect width="36" height="36" rx="8" stroke="#c5a059" stroke-width="1.5" stroke-opacity="0.4"/>
-  <path d="M3 18C7.5 10 13.5 6 18 6C22.5 6 28.5 10 33 18C28.5 26 22.5 30 18 30C13.5 30 7.5 26 3 18Z" stroke="url(#goldGradientFaviconPublic)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="18" cy="18" r="6.5" stroke="#c5a059" stroke-width="1.25" stroke-dasharray="2 1.5"/>
-  <circle cx="18" cy="18" r="3.5" stroke="#f5e6c8" stroke-width="1.5"/>
-  <path d="M18 13.5V22.5M13.5 18H22.5" stroke="#ffffff" stroke-width="1.25" stroke-linecap="round"/>
-  <defs>
-    <linearGradient id="goldGradientFaviconPublic" x1="3" y1="6" x2="33" y2="30" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#e5c07b"/>
-      <stop offset="0.5" stop-color="#c5a059"/>
-      <stop offset="1" stop-color="#997a3d"/>
-    </linearGradient>
-  </defs>
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="14" fill="#FAF8F5"/>
+  <rect width="64" height="64" rx="14" stroke="#C5A059" stroke-width="1.5" stroke-opacity="0.35"/>
+  
+  <!-- Top 4-Point Golden Star -->
+  <path d="M32 6L33.5 11.5L39 13L33.5 14.5L32 20L30.5 14.5L25 13L30.5 11.5L32 6Z" fill="#C5A059"/>
+
+  <!-- Upper Golden Eye Arch -->
+  <path d="M14 28C22 17 42 17 50 28" stroke="#C5A059" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Central Optical Halo Rays -->
+  <circle cx="32" cy="33" r="10" stroke="#E5C07B" stroke-width="1" stroke-dasharray="1.5 1.5"/>
+
+  <!-- Inner Refractive Lens -->
+  <circle cx="32" cy="33" r="6.5" fill="#E8F4F8" stroke="#C5A059" stroke-width="1.75"/>
+  <circle cx="32" cy="33" r="2.5" fill="#FFFFFF"/>
+  <path d="M32 29V37M28 33H36" stroke="#C5A059" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Lower Sage Green & Gold Curves -->
+  <path d="M14 31C24 38 40 38 50 31" stroke="#C5A059" stroke-width="1.75" stroke-linecap="round"/>
+  <path d="M13 32C22 47 42 47 51 32" stroke="#9AB8A8" stroke-width="2.5" stroke-linecap="round"/>
 </svg>
