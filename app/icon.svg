@@ -1,0 +1,15 @@
+<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="36" height="36" rx="8" fill="#08111f"/>
+  <rect width="36" height="36" rx="8" stroke="#c5a059" stroke-width="1.5" stroke-opacity="0.4"/>
+  <path d="M3 18C7.5 10 13.5 6 18 6C22.5 6 28.5 10 33 18C28.5 26 22.5 30 18 30C13.5 30 7.5 26 3 18Z" stroke="url(#goldGradientFavicon)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="18" cy="18" r="6.5" stroke="#c5a059" stroke-width="1.25" stroke-dasharray="2 1.5"/>
+  <circle cx="18" cy="18" r="3.5" stroke="#f5e6c8" stroke-width="1.5"/>
+  <path d="M18 13.5V22.5M13.5 18H22.5" stroke="#ffffff" stroke-width="1.25" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="goldGradientFavicon" x1="3" y1="6" x2="33" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e5c07b"/>
+      <stop offset="0.5" stop-color="#c5a059"/>
+      <stop offset="1" stop-color="#997a3d"/>
+    </linearGradient>
+  </defs>
+</svg>

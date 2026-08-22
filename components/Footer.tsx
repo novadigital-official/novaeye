@@ -2,6 +2,7 @@
 
 import { useSite } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
+import BrandLogo from './BrandLogo';
 import { ShieldCheck, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
@@ -14,17 +15,10 @@ export default function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           
-          {/* Institutional Identity */}
+          {/* Institutional Brand Logo & Identity */}
           <div className="space-y-4 md:col-span-2">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-md bg-[#0e1a2d] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] font-serif font-bold text-xs">
-                AV
-              </div>
-              <span className="text-white font-semibold text-base tracking-tight uppercase">
-                Antalya Vision <span className="text-slate-500 font-normal">| Refractive Institute</span>
-              </span>
-            </div>
-            <p className="text-slate-400 text-xs leading-relaxed max-w-md">
+            <BrandLogo variant="light" size="md" />
+            <p className="text-slate-400 text-xs leading-relaxed max-w-md pt-2">
               {f.brandDesc[lang]}
             </p>
           </div>

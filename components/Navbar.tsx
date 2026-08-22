@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSite, Lang } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
+import BrandLogo from './BrandLogo';
 import { Globe, Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar() {
@@ -49,19 +50,9 @@ export default function Navbar() {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Institutional Brand Identity */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg bg-[#0e1a2d] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] font-serif font-bold text-sm tracking-wider shadow-sm">
-            AV
-          </div>
-          <div className="flex flex-col">
-            <span className="text-white font-semibold text-base sm:text-lg tracking-tight uppercase">
-              Antalya Vision
-            </span>
-            <span className="text-[9px] text-[#c5a059] font-medium tracking-widest uppercase -mt-0.5">
-              Refractive Institute
-            </span>
-          </div>
+        {/* Bespoke Institutional Brand Logo */}
+        <a href="#" aria-label="Antalya Vision Home">
+          <BrandLogo variant="light" size="md" />
         </a>
 
         {/* Desktop Navigation */}
