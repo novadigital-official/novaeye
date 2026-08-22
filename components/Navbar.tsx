@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSite, Lang } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
-import { MessageSquare, Globe, Menu, X, Eye } from 'lucide-react';
+import { Globe, Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar() {
   const { lang, setLang, whatsappUrl } = useSite();
@@ -13,12 +13,11 @@ export default function Navbar() {
   const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Click-outside handler for language dropdown
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
@@ -29,68 +28,66 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Body scroll lock when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
   const d = DICT.nav;
 
-  const languages: { code: Lang; label: string; flag: string }[] = [
-    { code: 'en', label: 'English', flag: '🇬🇧' },
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'tr', label: 'Türkçe', flag: '🇹🇷' }
+  const languages: { code: Lang; label: string }[] = [
+    { code: 'en', label: 'English (UK)' },
+    { code: 'fr', label: 'Français' },
+    { code: 'tr', label: 'Türkçe' }
   ];
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-[#0a1628]/95 backdrop-blur-md shadow-lg py-3 border-b border-amber-500/20' : 'bg-transparent py-5'
+      scrolled 
+        ? 'bg-[#08111f]/95 backdrop-blur-md py-3.5 border-b border-white/10 shadow-lg' 
+        : 'bg-transparent py-5'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center shadow-md">
-            <Eye className="w-5 h-5 text-[#0a1628]" />
+        {/* Institutional Brand Identity */}
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-lg bg-[#0e1a2d] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] font-serif font-bold text-sm tracking-wider shadow-sm">
+            AV
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-bold text-lg tracking-tight">
-              Antalya<span className="text-amber-400">Vision</span>
+            <span className="text-white font-semibold text-base sm:text-lg tracking-tight uppercase">
+              Antalya Vision
             </span>
-            <span className="text-[10px] text-amber-200/70 -mt-0.5 font-medium tracking-wider">
-              NOVA GROUP
+            <span className="text-[9px] text-[#c5a059] font-medium tracking-widest uppercase -mt-0.5">
+              Refractive Institute
             </span>
           </div>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-          <a href="#packages" className="hover:text-amber-400 transition-colors">{d.packages[lang]}</a>
-          <a href="#doctors" className="hover:text-amber-400 transition-colors">{d.doctors[lang]}</a>
-          <a href="#process" className="hover:text-amber-400 transition-colors">{d.process[lang]}</a>
-          <a href="#faq" className="hover:text-amber-400 transition-colors">{d.faq[lang]}</a>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-slate-300 tracking-wide">
+          <a href="#packages" className="hover:text-[#c5a059] transition-colors">{d.packages[lang]}</a>
+          <a href="#doctors" className="hover:text-[#c5a059] transition-colors">{d.doctors[lang]}</a>
+          <a href="#process" className="hover:text-[#c5a059] transition-colors">{d.process[lang]}</a>
+          <a href="#faq" className="hover:text-[#c5a059] transition-colors">{d.faq[lang]}</a>
         </nav>
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
           
-          {/* Language Selector */}
+          {/* Language Switcher */}
           <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangDropdown(!langDropdown)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-medium transition-colors border border-white/15"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-medium transition-colors border border-white/15"
+              aria-label="Select Language"
             >
-              <Globe className="w-3.5 h-3.5 text-amber-400" />
-              <span>{lang.toUpperCase()}</span>
+              <Globe className="w-3.5 h-3.5 text-[#c5a059]" />
+              <span className="uppercase tracking-wider">{lang}</span>
             </button>
 
             {langDropdown && (
-              <div className="absolute right-0 mt-2 w-36 bg-[#0a1628] border border-slate-700 rounded-xl shadow-xl overflow-hidden py-1 z-50">
+              <div className="absolute right-0 mt-2 w-36 bg-[#0e1a2d] border border-white/15 rounded-lg shadow-2xl overflow-hidden py-1 z-50">
                 {languages.map((l) => (
                   <button
                     key={l.code}
@@ -98,48 +95,47 @@ export default function Navbar() {
                       setLang(l.code);
                       setLangDropdown(false);
                     }}
-                    className={`w-full text-left px-3.5 py-2 text-xs font-medium flex items-center gap-2 hover:bg-white/10 transition-colors ${
-                      lang === l.code ? 'text-amber-400 bg-white/5' : 'text-slate-300'
+                    className={`w-full text-left px-3.5 py-2 text-xs font-medium transition-colors ${
+                      lang === l.code ? 'text-[#c5a059] bg-white/5 font-semibold' : 'text-slate-300 hover:bg-white/5'
                     }`}
                   >
-                    <span>{l.flag}</span>
-                    <span>{l.label}</span>
+                    {l.label}
                   </button>
                 ))}
               </div>
             )}
           </div>
 
-          {/* CTA Button */}
+          {/* Consultation Button */}
           <a
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md transition-all duration-300"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#c5a059] hover:bg-[#b38e44] text-[#08111f] text-xs font-semibold tracking-wide transition-all shadow-sm"
           >
-            <MessageSquare className="w-3.5 h-3.5" />
             <span>{d.contactBtn[lang]}</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-white hover:text-amber-400"
-            aria-label="Toggle Menu"
+            className="md:hidden p-2 text-slate-300 hover:text-white"
+            aria-label="Toggle Navigation"
           >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-slate-300" />}
           </button>
         </div>
 
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0a1628]/98 border-b border-amber-500/20 px-6 py-5 space-y-4 shadow-2xl">
-          <a href="#packages" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.packages[lang]}</a>
-          <a href="#doctors" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.doctors[lang]}</a>
-          <a href="#process" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.process[lang]}</a>
-          <a href="#faq" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.faq[lang]}</a>
+        <div className="md:hidden bg-[#08111f]/98 border-b border-white/10 px-6 py-6 space-y-4 shadow-2xl">
+          <a href="#packages" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-[#c5a059] font-medium py-1.5 text-sm">{d.packages[lang]}</a>
+          <a href="#doctors" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-[#c5a059] font-medium py-1.5 text-sm">{d.doctors[lang]}</a>
+          <a href="#process" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-[#c5a059] font-medium py-1.5 text-sm">{d.process[lang]}</a>
+          <a href="#faq" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-[#c5a059] font-medium py-1.5 text-sm">{d.faq[lang]}</a>
           <div className="pt-2">
             <a
               href={whatsappUrl()}
@@ -147,8 +143,8 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="btn-primary w-full text-center"
             >
-              <MessageSquare className="w-4 h-4" />
               <span>{d.contactBtn[lang]}</span>
+              <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
         </div>

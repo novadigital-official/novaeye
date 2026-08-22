@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useSite } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
-import { ChevronDown, HelpCircle, MessageSquare } from 'lucide-react';
+import { Plus, Minus, ArrowRight } from 'lucide-react';
 
 export default function FaqSection() {
   const { lang, whatsappUrl } = useSite();
@@ -15,22 +15,24 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-white border-b border-slate-200 scroll-mt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="faq" className="py-24 sm:py-32 bg-white border-b border-slate-200 scroll-mt-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        {/* Header */}
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <p className="text-xs font-bold uppercase tracking-widest text-amber-600">FAQ</p>
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#c5a059]">
+            Patient Questions & Clinical Answers
+          </p>
+          <h2 className="text-2xl sm:text-4xl font-bold text-[#08111f] tracking-tight">
             {f.title[lang]}
           </h2>
-          <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             {f.subtitle[lang]}
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {f.items.map((item, idx) => {
             const isOpen = openIdx === idx;
             const panelId = `faq-panel-${idx}`;
@@ -38,21 +40,19 @@ export default function FaqSection() {
             return (
               <div
                 key={idx}
-                className={`border rounded-2xl overflow-hidden transition-colors duration-200 ${
-                  isOpen ? 'border-amber-400 bg-amber-50/30' : 'border-slate-200 bg-white'
-                }`}
+                className="border border-slate-200 rounded-xl overflow-hidden transition-colors"
               >
                 <button
                   id={triggerId}
                   onClick={() => toggle(idx)}
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-slate-800 hover:text-amber-600 transition-colors"
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 font-semibold text-base text-[#08111f] hover:text-[#c5a059] transition-colors"
                 >
                   <span>{item.q[lang]}</span>
-                  <ChevronDown className={`w-5 h-5 shrink-0 text-slate-400 transition-transform duration-300 ${
-                    isOpen ? 'rotate-180 text-amber-600' : ''
-                  }`} />
+                  <span className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 shrink-0 border border-slate-200">
+                    {isOpen ? <Minus className="w-4 h-4 text-[#c5a059]" /> : <Plus className="w-4 h-4" />}
+                  </span>
                 </button>
 
                 {isOpen && (
@@ -60,7 +60,7 @@ export default function FaqSection() {
                     id={panelId}
                     role="region"
                     aria-labelledby={triggerId}
-                    className="px-5 pb-5 sm:px-6 sm:pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3"
+                    className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4"
                   >
                     <p>{item.a[lang]}</p>
                   </div>
@@ -70,16 +70,16 @@ export default function FaqSection() {
           })}
         </div>
 
-        {/* Mini CTA */}
-        <div className="text-center pt-4">
+        {/* Quiet Contact Link */}
+        <div className="text-center pt-2">
           <a
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-500 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#c5a059] hover:text-[#b38e44] uppercase tracking-wider transition-colors"
           >
-            <MessageSquare className="w-4 h-4" />
             <span>{f.moreCta[lang]}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
