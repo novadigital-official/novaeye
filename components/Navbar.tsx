@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSite, Lang } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
 import { MessageSquare, Globe, Menu, X, Eye } from 'lucide-react';
@@ -10,14 +10,34 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langDropdown, setLangDropdown] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Click-outside handler for language dropdown
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
 
   const d = DICT.nav;
 
@@ -34,51 +54,43 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+        <a href="#" className="flex items-center gap-2.5">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center shadow-md">
             <Eye className="w-5 h-5 text-[#0a1628]" />
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-extrabold text-lg sm:text-xl tracking-tight">
-              Antalya<span className="text-amber-400 font-bold">Vision</span>
+            <span className="text-white font-bold text-lg tracking-tight">
+              Antalya<span className="text-amber-400">Vision</span>
             </span>
-            <span className="text-[10px] text-amber-200/80 -mt-1 font-medium tracking-wider">
-              ZEISS SMART LENS · NOVA GROUP
+            <span className="text-[10px] text-amber-200/70 -mt-0.5 font-medium tracking-wider">
+              NOVA GROUP
             </span>
           </div>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-200">
-          <a href="#packages" className="hover:text-amber-400 transition-colors">
-            {d.packages[lang]}
-          </a>
-          <a href="#doctors" className="hover:text-amber-400 transition-colors">
-            {d.doctors[lang]}
-          </a>
-          <a href="#process" className="hover:text-amber-400 transition-colors">
-            {d.process[lang]}
-          </a>
-          <a href="#faq" className="hover:text-amber-400 transition-colors">
-            {d.faq[lang]}
-          </a>
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#packages" className="hover:text-amber-400 transition-colors">{d.packages[lang]}</a>
+          <a href="#doctors" className="hover:text-amber-400 transition-colors">{d.doctors[lang]}</a>
+          <a href="#process" className="hover:text-amber-400 transition-colors">{d.process[lang]}</a>
+          <a href="#faq" className="hover:text-amber-400 transition-colors">{d.faq[lang]}</a>
         </nav>
 
-        {/* Right CTA & Lang Switcher */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        {/* Right Actions */}
+        <div className="flex items-center gap-3">
           
           {/* Language Selector */}
-          <div className="relative">
+          <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangDropdown(!langDropdown)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-colors border border-white/20"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-medium transition-colors border border-white/15"
             >
               <Globe className="w-3.5 h-3.5 text-amber-400" />
               <span>{lang.toUpperCase()}</span>
             </button>
 
             {langDropdown && (
-              <div className="absolute right-0 mt-2 w-36 bg-[#0a1628] border border-amber-500/30 rounded-xl shadow-xl overflow-hidden py-1 z-50">
+              <div className="absolute right-0 mt-2 w-36 bg-[#0a1628] border border-slate-700 rounded-xl shadow-xl overflow-hidden py-1 z-50">
                 {languages.map((l) => (
                   <button
                     key={l.code}
@@ -86,8 +98,8 @@ export default function Navbar() {
                       setLang(l.code);
                       setLangDropdown(false);
                     }}
-                    className={`w-full text-left px-3.5 py-2 text-xs font-medium flex items-center gap-2 hover:bg-amber-400/20 transition-colors ${
-                      lang === l.code ? 'text-amber-400 font-bold bg-white/5' : 'text-slate-200'
+                    className={`w-full text-left px-3.5 py-2 text-xs font-medium flex items-center gap-2 hover:bg-white/10 transition-colors ${
+                      lang === l.code ? 'text-amber-400 bg-white/5' : 'text-slate-300'
                     }`}
                   >
                     <span>{l.flag}</span>
@@ -98,18 +110,18 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* WhatsApp Action Button */}
+          {/* CTA Button */}
           <a
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 text-xs font-extrabold shadow-md transition-all hover:scale-102"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md transition-all duration-300"
           >
             <MessageSquare className="w-3.5 h-3.5" />
             <span>{d.contactBtn[lang]}</span>
           </a>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2 text-white hover:text-amber-400"
@@ -123,41 +135,17 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0a1628]/98 border-b border-amber-500/30 px-6 py-5 space-y-4 shadow-2xl">
-          <a
-            href="#packages"
-            onClick={() => setMobileOpen(false)}
-            className="block text-slate-200 hover:text-amber-400 font-medium py-1"
-          >
-            {d.packages[lang]}
-          </a>
-          <a
-            href="#doctors"
-            onClick={() => setMobileOpen(false)}
-            className="block text-slate-200 hover:text-amber-400 font-medium py-1"
-          >
-            {d.doctors[lang]}
-          </a>
-          <a
-            href="#process"
-            onClick={() => setMobileOpen(false)}
-            className="block text-slate-200 hover:text-amber-400 font-medium py-1"
-          >
-            {d.process[lang]}
-          </a>
-          <a
-            href="#faq"
-            onClick={() => setMobileOpen(false)}
-            className="block text-slate-200 hover:text-amber-400 font-medium py-1"
-          >
-            {d.faq[lang]}
-          </a>
+        <div className="md:hidden bg-[#0a1628]/98 border-b border-amber-500/20 px-6 py-5 space-y-4 shadow-2xl">
+          <a href="#packages" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.packages[lang]}</a>
+          <a href="#doctors" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.doctors[lang]}</a>
+          <a href="#process" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.process[lang]}</a>
+          <a href="#faq" onClick={() => setMobileOpen(false)} className="block text-slate-200 hover:text-amber-400 font-medium py-1">{d.faq[lang]}</a>
           <div className="pt-2">
             <a
               href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-sm shadow-md"
+              className="btn-primary w-full text-center"
             >
               <MessageSquare className="w-4 h-4" />
               <span>{d.contactBtn[lang]}</span>

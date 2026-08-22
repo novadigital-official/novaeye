@@ -2,7 +2,7 @@
 
 import { useSite } from '@/lib/context';
 import { DICT } from '@/lib/i18n';
-import { Star, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import { Star, ShieldCheck, Heart } from 'lucide-react';
 
 export default function TrustProof() {
   const { lang } = useSite();
@@ -32,19 +32,15 @@ export default function TrustProof() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-20 sm:py-28 bg-slate-50 border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-            <span>{lang === 'tr' ? 'Kanıtlanmış Başarı' : 'Clinical Excellence'}</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0a1628] tracking-tight">
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             {p.title[lang]}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600">
+          <p className="text-sm sm:text-base text-slate-500 leading-relaxed">
             {p.subtitle[lang]}
           </p>
         </div>
@@ -53,22 +49,24 @@ export default function TrustProof() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
           
           <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-black shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
               <Star className="w-6 h-6 fill-current" />
             </div>
             <div>
-              <p className="font-extrabold text-slate-900 text-sm">Trustpilot 4.9 ★★★★★</p>
-              <p className="text-xs text-slate-500">{lang === 'tr' ? '1.700+ Doğrulanmış İngiliz Hasta' : '1,700+ Verified Patient Reviews'}</p>
+              <p className="font-bold text-slate-900 text-sm">{p.trustpilot}</p>
+              <p className="text-xs text-slate-500">1,700+ Verified Reviews</p>
             </div>
           </div>
 
           <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#0a1628] text-amber-400 flex items-center justify-center font-bold text-sm shrink-0">
-              JCI
+            <div className="w-12 h-12 rounded-xl bg-[#0a1628] flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-6 h-6 text-amber-400" />
             </div>
             <div>
-              <p className="font-extrabold text-slate-900 text-sm">{p.jci[lang]}</p>
-              <p className="text-xs text-slate-500">{lang === 'tr' ? 'Uluslararası Tıp Standartları' : 'Gold Standard in Healthcare'}</p>
+              <p className="font-bold text-slate-900 text-sm">{p.jci[lang]}</p>
+              <p className="text-xs text-slate-500">
+                {lang === 'tr' ? 'A++ Sağlık Standartları' : lang === 'fr' ? 'Standards Internationaux' : 'International Healthcare Standards'}
+              </p>
             </div>
           </div>
 
@@ -77,32 +75,34 @@ export default function TrustProof() {
               <Heart className="w-6 h-6 fill-current" />
             </div>
             <div>
-              <p className="font-extrabold text-slate-900 text-sm">{p.happy[lang]}</p>
-              <p className="text-xs text-slate-500">{lang === 'tr' ? '%99 Hasta Memnuniyeti' : '99% Life-Changing Success Rate'}</p>
+              <p className="font-bold text-slate-900 text-sm">{p.happy[lang]}</p>
+              <p className="text-xs text-slate-500">
+                {lang === 'tr' ? '%99 Hasta Memnuniyeti' : lang === 'fr' ? 'Taux de Satisfaction 99%' : '99% Patient Satisfaction'}
+              </p>
             </div>
           </div>
 
         </div>
 
-        {/* 4 Treatment Result Grid */}
+        {/* 4 Treatment Showcase Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {gallery.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm card-hover group"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm"
             >
               <div className="aspect-square overflow-hidden relative">
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute top-2.5 right-2.5 bg-[#0a1628]/80 backdrop-blur-md text-amber-400 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
+                <div className="absolute top-2.5 right-2.5 bg-[#0a1628]/80 backdrop-blur-md text-amber-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
                   {item.tech}
                 </div>
               </div>
               <div className="p-3.5 text-center bg-white border-t border-slate-100">
-                <h3 className="font-bold text-xs sm:text-sm text-[#0a1628] leading-tight">
+                <h3 className="font-semibold text-xs sm:text-sm text-slate-800 leading-tight">
                   {item.title}
                 </h3>
               </div>

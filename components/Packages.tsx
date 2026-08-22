@@ -45,7 +45,7 @@ export default function Packages() {
                 <h3 className="text-xl font-bold text-[#0a1628]">{pkg.pkg1.name[lang]}</h3>
                 <p className="text-2xl font-extrabold text-amber-600 mt-1">{pkg.pkg1.price}</p>
                 <p className="text-xs text-slate-500 mt-1">
-                  {lang === 'tr' ? '5★ Otel + Cerrahi + VIP Transfer Dahil' : 'All-Inclusive Package · £0 Upfront Deposit'}
+                  {lang === 'tr' ? '5★ Otel + Cerrahi + VIP Transfer Dahil' : lang === 'fr' ? 'Forfait Tout Compris · Zéro Acompte' : 'All-Inclusive Package · £0 Upfront Deposit'}
                 </p>
               </div>
 
@@ -60,10 +60,10 @@ export default function Packages() {
             </div>
 
             <a
-              href={whatsappUrl(`Hello, I would like to get a quote for the Eyelid Blepharoplasty package (${pkg.pkg1.price}).`)}
+              href={whatsappUrl(pkg.pkg1.whatsapp[lang])}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-[#0a1628] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
+              className="w-full py-3 bg-white border border-amber-400/60 hover:border-amber-400 hover:bg-amber-50 text-[#0a1628] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
             >
               <MessageSquare className="w-4 h-4" />
               <span>{pkg.bookCta[lang]}</span>
@@ -84,7 +84,7 @@ export default function Packages() {
                   <Award className="w-7 h-7" />
                 </div>
                 <span className="text-xs font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-3 py-1 rounded-full">
-                  {lang === 'tr' ? '15 Dk Operasyon' : '15-Min Procedure'}
+                  {lang === 'tr' ? '15 Dk Operasyon' : lang === 'fr' ? '15 Min · Indolore' : '15-Min Procedure'}
                 </span>
               </div>
 
@@ -92,7 +92,7 @@ export default function Packages() {
                 <h3 className="text-2xl font-extrabold text-white">{pkg.pkg2.name[lang]}</h3>
                 <p className="text-3xl font-black text-amber-400 mt-1">{pkg.pkg2.price}</p>
                 <p className="text-xs text-slate-300 mt-1">
-                  {lang === 'tr' ? 'İki Göz Dahil · 5★ Sahil Oteli · VIP Mercedes Transfer' : 'Both Eyes Included · 5★ Beachfront Hotel · VIP Transfers'}
+                  {lang === 'tr' ? 'İki Göz Dahil · 5★ Sahil Oteli · VIP Mercedes Transfer' : lang === 'fr' ? '2 Yeux Inclus · Hôtel 5★ · Transfert VIP Mercedes' : 'Both Eyes Included · 5★ Beachfront Hotel · VIP Transfers'}
                 </p>
               </div>
 
@@ -107,10 +107,10 @@ export default function Packages() {
             </div>
 
             <a
-              href={whatsappUrl(`Hello, I am interested in the ZEISS Trifocal Smart Lens VIP package (${pkg.pkg2.price}). Please share details.`)}
+              href={whatsappUrl(pkg.pkg2.whatsapp[lang])}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102"
+              className="btn-primary w-full py-3.5 text-white font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all"
             >
               <MessageSquare className="w-4 h-4" />
               <span>{pkg.bookCta[lang]}</span>
@@ -133,7 +133,7 @@ export default function Packages() {
                 <h3 className="text-xl font-bold text-[#0a1628]">{pkg.pkg3.name[lang]}</h3>
                 <p className="text-2xl font-extrabold text-amber-600 mt-1">{pkg.pkg3.price}</p>
                 <p className="text-xs text-slate-500 mt-1">
-                  {lang === 'tr' ? 'ZEISS Femtosaniye Lazer · 5★ Otel Dahil' : 'ZEISS VisuMax System · 5★ Hotel Included'}
+                  {lang === 'tr' ? 'ZEISS Femtosaniye Lazer · 5★ Otel Dahil' : lang === 'fr' ? 'Système ZEISS VisuMax · Hôtel 5★ Inclus' : 'ZEISS VisuMax System · 5★ Hotel Included'}
                 </p>
               </div>
 
@@ -148,10 +148,10 @@ export default function Packages() {
             </div>
 
             <a
-              href={whatsappUrl(`Hello, I would like to get a quote for the No-Touch Laser Eye Surgery package (${pkg.pkg3.price}).`)}
+              href={whatsappUrl(pkg.pkg3.whatsapp[lang])}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-[#0a1628] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
+              className="w-full py-3 bg-white border border-amber-400/60 hover:border-amber-400 hover:bg-amber-50 text-[#0a1628] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
             >
               <MessageSquare className="w-4 h-4" />
               <span>{pkg.bookCta[lang]}</span>

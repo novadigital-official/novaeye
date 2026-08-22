@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://medturkey-elite.vercel.app';
+  const baseUrl = 'https://novaeye.vercel.app';
   return [
     {
       url: baseUrl,

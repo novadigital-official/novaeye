@@ -1,28 +1,12 @@
 'use client';
 
 import { useSite } from '@/lib/context';
+import { DICT } from '@/lib/i18n';
 import { MessageSquare, Sparkles, ShieldCheck } from 'lucide-react';
 
 export default function FinalCta() {
   const { lang, whatsappUrl } = useSite();
-
-  const title = {
-    en: 'Ready to Experience Crystal-Clear Vision?',
-    fr: 'Prêt à Retrouver une Vision Parfaite ?',
-    tr: 'Net ve Kusursuz Görüşe Hazır mısınız?'
-  }[lang];
-
-  const sub = {
-    en: 'Get a free, no-obligation medical assessment today. Our ophthalmic coordinator responds within 15 minutes.',
-    fr: 'Obtenez une évaluation médicale gratuite et sans engagement. Réponse sous 15 minutes.',
-    tr: 'Bugün ücretsiz ve bağlayıcılığı olmayan hekim değerlendirmenizi alın. Koordinatörümüz 15 dakikada yanıtlar.'
-  }[lang];
-
-  const btn = {
-    en: 'Start Free WhatsApp Consultation Now',
-    fr: 'Démarrer la Consultation Gratuite sur WhatsApp',
-    tr: 'WhatsApp ile Ücretsiz Ön Analiz Başlat'
-  }[lang];
+  const c = DICT.finalCta;
 
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-br from-[#0a1628] via-[#10223d] to-[#0a1628] text-white relative overflow-hidden border-t border-amber-500/20">
@@ -33,15 +17,15 @@ export default function FinalCta() {
         
         <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider">
           <Sparkles className="w-4 h-4 text-amber-400" />
-          <span>{lang === 'tr' ? '£0 Ön Kapora · Klinikte Öde' : '£0 Upfront Deposit · Pay on Arrival'}</span>
+          <span>{c.badge[lang]}</span>
         </div>
 
         <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-          {title}
+          {c.title[lang]}
         </h2>
 
         <p className="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          {sub}
+          {c.sub[lang]}
         </p>
 
         <div className="pt-4 flex flex-col items-center justify-center gap-3">
@@ -49,15 +33,15 @@ export default function FinalCta() {
             href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="pulse-cta inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 hover:from-red-600 hover:to-orange-600 text-white font-black text-base sm:text-xl shadow-2xl transition-all hover:scale-103"
+            className="btn-primary inline-flex items-center gap-3 px-10 py-5 rounded-full text-white font-black text-base sm:text-lg shadow-2xl transition-all"
           >
             <MessageSquare className="w-6 h-6 shrink-0" />
-            <span>{btn}</span>
+            <span>{c.btn[lang]}</span>
           </a>
 
           <div className="flex items-center gap-2 text-xs text-slate-400 font-semibold pt-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>{lang === 'tr' ? '12 Ay Medikal Takip Garantisi' : '12-Month Post-Op Follow-Up Guarantee'}</span>
+            <span>{c.guarantee[lang]}</span>
           </div>
         </div>
 
