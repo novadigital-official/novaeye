@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 interface BrandLogoProps {
   variant?: 'light' | 'dark';
@@ -15,52 +16,16 @@ export default function BrandLogo({ variant = 'light', size = 'md', showText = t
 
   return (
     <div className="flex items-center gap-3 select-none group">
-      {/* Precision Vector Emblem: Modern Teal & Titanium Slate Eye Iris (Razor Sharp & Full Bleed) */}
-      <div className={`${iconSize} rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md border border-slate-200/80 shrink-0 group-hover:scale-105 transition-transform`}>
-        <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          {/* Top-Left Charcoal Wing */}
-          <path
-            d="M20 28C24 14 42 8 58 12C48 20 42 30 38 44C30 42 24 37 20 28Z"
-            fill="#475569"
-          />
-          {/* Bottom-Right Charcoal Wing */}
-          <path
-            d="M80 52C76 66 58 72 42 68C52 60 58 50 62 36C70 38 76 43 80 52Z"
-            fill="#475569"
-          />
-
-          {/* Main Angled Deep Teal Eye Aperture Oval */}
-          <ellipse
-            cx="50"
-            cy="40"
-            rx="28"
-            ry="20"
-            transform="rotate(-28 50 40)"
-            fill="#165B66"
-          />
-
-          {/* Clean White Outer Iris Ring with Precision Notch */}
-          <path
-            d="M50 26C57.732 26 64 32.268 64 40C64 47.732 57.732 54 50 54C42.268 54 36 47.732 36 40C36 32.268 42.268 26 50 26Z"
-            fill="#FFFFFF"
-          />
-
-          {/* Inner Deep Teal Pupil */}
-          <circle
-            cx="50"
-            cy="40"
-            r="8.5"
-            fill="#0F3B42"
-          />
-
-          {/* Small Top-Right Aperture Spark Catchlight */}
-          <circle
-            cx="55"
-            cy="35"
-            r="2.5"
-            fill="#FFFFFF"
-          />
-        </svg>
+      {/* Pure High-Definition Emblem Image */}
+      <div className={`${iconSize} relative rounded-xl overflow-hidden shadow-sm border border-slate-200/80 shrink-0 group-hover:scale-105 transition-transform bg-[#F8FAFC]`}>
+        <Image
+          src="/images/antalya-vision-emblem.jpg"
+          alt="Antalya Vision Clinic Emblem"
+          fill
+          sizes="48px"
+          className="object-cover scale-125"
+          priority
+        />
       </div>
 
       {/* Typography */}
